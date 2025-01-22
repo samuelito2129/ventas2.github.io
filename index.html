@@ -106,4 +106,91 @@
                             "sob_bombonato", "sob_crocante", "sob_chococo", "sob_sandwich", "sob_tapa", 
                             "sob_festino", "sob_canaleado", "sob_wafer"];
 
-            campos.for
+            campos.forEach(campo => {
+                const valor = urlParams.get(campo);
+                if (valor !== null) {
+                    const elemento = document.getElementById(campo);
+                    // Verificar si el valor comienza con "!"
+                    if (valor.startsWith("!")) {
+                        const cleanValue = valor.slice(1); // Remover "!"
+                        elemento.innerHTML = `<span class="red">!</span>${cleanValue}`;
+                    } else {
+                        elemento.innerHTML = valor;
+                    }
+                }
+            });
+
+            // Ejecutar la impresión automáticamente
+            window.print();
+        }
+
+        window.onload = getQueryParams; // Ejecutar al cargar la página
+    </script>
+</head>
+<body onload="getQueryParams()" onfocus="window.close()">
+    <div class="centrar-texto">
+        <p style="font-size: 14px;font-family: 'Roboto', sans-serif; margin-bottom: -10px;"><b>HELADERÍA PRIMAVERA</b></p>
+        <p style="font-size: 10px;font-family: Arial, sans-serif;line-height: 0;">TELÉFONO: 73196102 - 72627865</p> 
+        <h2>TICKET DE VENTA</h2>
+    </div>
+    
+    <div class="container">    
+        <p>Para:</p>
+        <p id="Nombre"></p>&nbsp;&nbsp;
+        <p>Fecha:</p>
+        <p id="Fecha"></p>&nbsp;&nbsp;
+        <p>H:</p>
+        <p id="Hora"></p>
+    </div>   
+        
+    <table class="primera-table">
+        <thead>
+            <tr>
+                <th>PRODUCTO</th>
+                <th>SOB</th>
+                <th>VEND</th>
+                <th>P.UNI</th>
+                <th>MONTO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Bombón</td>
+                <td id="sob_bombon"></td>
+                <td id="cantbombon"></td>
+                <td rowspan="3">1</td>
+                <td rowspan="3" id="imp_crema"></td>
+            </tr>
+            <tr>
+                <td>Granizado</td>
+                <td id="sob_granizado"></td>
+                <td id="cant_granizado"></td>
+            </tr>
+            <tr class="borde-especial">
+                <td>Arbolito</td>
+                <td id="sob_arbolito"></td>
+                <td id="cant_arbolito"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="tabla_total-table">
+        <tr>
+            <td>SUBTOTAL:</td>
+            <td id="subtotal"></td>
+        </tr>
+        <tr>
+            <td>DESCUENTO:</td>
+            <td id="descuento"></td>
+        </tr>
+        <tr>
+            <td>RECARGO:</td>
+            <td id="recargo"></td>
+        </tr>
+        <tr>
+            <td><strong>PAGAR:</strong></td>
+            <td><strong id="pagar"></strong></td>
+        </tr>
+    </table>
+</body>
+</html>
