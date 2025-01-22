@@ -9,174 +9,130 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        
-        
         .container {
             display: flex;
             font-size: 12px; 
             font-family: Arial, sans-serif;
-            margin-top: 1px; /* Reduce el margen superior del párrafo */
+            margin-top: 1px;
         }
         p {
-            margin-right: 1px; /* Espacio entre los párrafos */
+            margin-right: 1px;
             margin-top: 24px;
-            line-height: 0; /* Controla el interlineado dentro del párrafo */
+            line-height: 0;
             padding: 0;
         }
-       .borde-especial {
-    border-bottom:1px dashed lightgray;  /* Cambia el estilo del borde inferior */
-}
-
-        .segunda-table {
-            margin-top: 2px; /* Ajusta el espacio superior de la segunda tabla */
-        
+        .borde-especial {
+            border-bottom: 1px dashed lightgray;
         }
         .primera-table {
             border-bottom: 2px dashed black;
-            margin-bottom: 5px; /* Cambia el grosor y color del borde inferior */
-           
+            margin-bottom: 5px;
         }
         .primera-table th:nth-child(1),
         .primera-table td:nth-child(1) {
-            width: 25%; /* Ancho de la primera columna de la primera tabla */
-        }
-
-        .primera-table th:nth-child(2),
-        .primera-table td:nth-child(2) {
-            width: 15%;
-            text-align: center; /* Ancho de la segunda columna de la primera tabla */
-        }
-        .primera-table th:nth-child(3),
-        .primera-table td:nth-child(3) {
-            width: 15%;
-            text-align: center; /* Ancho de la primera columna de la primera tabla */
-        }
-
-        .primera-table th:nth-child(4),
-        .primera-table td:nth-child(4) {
-            width: 15%;
-            text-align: center; /* Ancho de la segunda columna de la primera tabla */
+            width: 25%;
         }
         .primera-table th:nth-child(5),
         .primera-table td:nth-child(5) {
             width: 20%;
             text-align: right;
         }
-       .tabla_total-table th:nth-child(1),
-        .tabla_total-table td:nth-child(1) {
-            width: 200px;
-            text-align: right; /* Modificar el ancho de la primera columna */
-        }
-
-        .tabla_total-table th:nth-child(2),
         .tabla_total-table td:nth-child(2) {
             width: 70px;
             text-align: center;
             background-color: #CECECE;
-            border: 2px solid white; /* Modificar el ancho de la segunda columna */
+            border: 2px solid white;
             padding: 4px;
         }
-       
-         .centrar-texto {
-            text-align: center; /* Alinear el texto al centro */
+        .centrar-texto {
+            text-align: center;
         }
-        
-   
         h2 {
             font-size: 13px;
             font-family: 'Lexend', sans-serif;
-            margin-bottom: -15px; /* Reduce el margen inferior del título */
-            line-height: 1; /* Controla la altura de línea dentro del título */
+            margin-bottom: -15px;
+            line-height: 1;
             padding: 0px;
-           
         }
-
         body {
-          width: 6.6cm;
-          height: 14cm;
-          margin: 0 auto;
-
-          
-    
-        
-        
+            width: 6.6cm;
+            height: 14cm;
+            margin: 0 auto;
         }
         table, th, td {
-   
-    border-collapse: collapse; /* Borde sólido de 1 píxel en color negro */
-    width: 100%;
-    border: 0px solid black;
-    
-  }
-  td {
-    font-size: 12.5px;
-    font-family: Arial, sans-serif;
-    padding: 2px;
-  }
-  th {
-    font-size: 12px;
-    padding: 6px;
-    font-family: 'oswald', sans-serif;
-    background-color: #CECECE;
-    border-top: 2px dashed black;
-    border-bottom: 2px dashed black;
-  }
- 
-@page {
-    margin: 1mm; /* Márgenes personalizados */
-}
-@media print {
-  table {
-    background-color: inherit; /* Asegura que el fondo no se elimine */
-  }
-}
-            
-      </style>
-  <script>
-    // Función para obtener los parámetros de la URL
-    function getQueryParams() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const campos = ["Nombre", "Fecha", "Hora", "cantbombon", "imp_crema", "cant_granizado", "cant_arbolito", "cant_gemelo", 
-                      "imp_agua", "cant_tamarindo", "cant_colores", "cant_cono", "imp_2bs", "cant_bombonato", "cant_crocante", 
-                      "imp_crocchoc", "cant_chococo", "cant_sandwich", "cant_vasotapa", "imp_vasotapa", "cant_festino", 
-                      "imp_festino", "cant_canaleado", "imp_canaleado", "cant_wafer", "imp_wafer", "subtotal", "descuento", 
-                      "recargo", "pagar", "sob_bombon", "sob_granizado", "sob_arbolito", "sob_agua", "sob_cono", "sob_bombonato", "sob_crocante", "sob_chococo", "sob_sandwich", "sob_tapa", "sob_festino", "sob_canaleado", "sob_wafer"];
-
-      // Rellenar los campos si existen en los parámetros de la URL
-      campos.forEach(campo => {
-        const valor = urlParams.get(campo);
-        if (valor !== null) {
-          document.getElementById(campo).innerHTML = valor;
+            border-collapse: collapse;
+            width: 100%;
+            border: 0px solid black;
         }
-      });
-     // Ejecutar la impresión después de cargar los parámetros
-   window.print();
+        td {
+            font-size: 12.5px;
+            font-family: Arial, sans-serif;
+            padding: 2px;
+        }
+        th {
+            font-size: 12px;
+            padding: 6px;
+            font-family: 'Oswald', sans-serif;
+            background-color: #CECECE;
+            border-top: 2px dashed black;
+            border-bottom: 2px dashed black;
+        }
+        .red {
+            color: red;
+            font-weight: bold;
+        }
+        @page {
+            margin: 1mm;
+        }
+        @media print {
+            table {
+                background-color: inherit;
+            }
+        }
+    </style>
     
+    <script>
+        function getQueryParams() {
+            const urlParams = new URLSearchParams(window.location.search);
 
+            // Iterar automáticamente por todos los elementos que coincidan con un id
+            document.querySelectorAll("[id]").forEach(element => {
+                const value = urlParams.get(element.id);
+                if (value !== null) {
+                    // Verificar si el valor comienza con un signo de exclamación
+                    if (value.startsWith("!")) {
+                        const cleanValue = value.slice(1); // Eliminar el signo de exclamación
+                        element.innerHTML = `<span class="red">!</span>${cleanValue}`;
+                    } else {
+                        element.innerHTML = value;
+                    }
+                }
+            });
 
-    }
+            // Imprimir automáticamente después de cargar
+            window.print();
+        }
 
-    window.onload = getQueryParams; // Ejecutar al cargar la página
-  </script>
-      
+        window.onload = getQueryParams; // Ejecutar al cargar la página
+    </script>
 </head>
 <body onload="getQueryParams()" onfocus="window.close()">
     <div class="centrar-texto">
-      <p style="font-size: 14px;font-family: 'Roboto', sans-serif;  margin-bottom: -10px;"><b>HELADERÍA PRIMAVERA</b></p>
-       <p style="font-size: 10px;font-family: Arial, sans-serif;line-height: 0;">TELÉFONO: 73196102 - 72627865</p> 
-       <h2>TICKET DE VENTA</h2>
+        <p style="font-size: 14px;font-family: 'Roboto', sans-serif; margin-bottom: -10px;"><b>HELADERÍA PRIMAVERA</b></p>
+        <p style="font-size: 10px;font-family: Arial, sans-serif;line-height: 0;">TELÉFONO: 73196102 - 72627865</p> 
+        <h2>TICKET DE VENTA</h2>
     </div>
     
     <div class="container">    
         <p>Para:</p>
-        <p id=Nombre></p>&nbsp;&nbsp;
+        <p id="Nombre"></p>&nbsp;&nbsp;
         <p>Fecha:</p>
-        <p id=Fecha></p>&nbsp;&nbsp;
+        <p id="Fecha"></p>&nbsp;&nbsp;
         <p>H:</p>
         <p id="Hora"></p>
     </div>   
         
-    <table class="primera-table, primera-table">
+    <table class="primera-table">
         <thead>
             <tr>
                 <th>PRODUCTO</th>
@@ -184,7 +140,6 @@
                 <th>VEND</th>
                 <th>P.UNI</th>
                 <th>MONTO</th>
-                
             </tr>
         </thead>
         <tbody>
@@ -193,90 +148,17 @@
                 <td id="sob_bombon"></td>
                 <td id="cantbombon"></td>
                 <td rowspan="3">1</td>
-                <td rowspan="3", id="imp_crema"></td>
-               
+                <td rowspan="3" id="imp_crema"></td>
             </tr>
             <tr>
                 <td>Granizado</td>
                 <td id="sob_granizado"></td>
                 <td id="cant_granizado"></td>
-                
             </tr>
             <tr class="borde-especial">
                 <td>Arbolito</td>
                 <td id="sob_arbolito"></td>
                 <td id="cant_arbolito"></td>
-                
-            </tr>
-            <tr class="borde-especial">
-                <td>P_Agua</td>
-                <td id="sob_agua"></td>
-                <td id="cant_colores"></td>
-                <td>0,6</td>
-                <td id="imp_agua"></td>
-            </tr>
-           
-            <tr>
-                <td>Cono</td>
-                <td id="sob_cono"></td>
-                <td id="cant_cono"></td>
-                <td rowspan="2">2</td>
-                <td rowspan="2", id="imp_2bs"></td>
-
-            </tr>
-            <tr class="borde-especial">
-                <td>Bombonato</td>
-                <td id="sob_bombonato"></td>
-                <td id="cant_bombonato"></td>
-                
-            </tr>
-           
-            <tr>
-                <td>Crocante</td>
-                <td id="sob_crocante"></td>
-                <td id="cant_crocante"></td>
-                <td rowspan="3">2.5</td>
-                <td rowspan="3", id="imp_crocchoc"></td>
-            </tr>
-            <tr>
-                <td>Chococo</td>
-                <td id="sob_chococo"></td>
-                <td id="cant_chococo"></td>
-                
-            </tr>
-            <tr class="borde-especial">
-                <td>Sandwich</td>
-                <td id="sob_sandwich"></td>
-                <td id="cant_sandwich"></td>
-                
-            </tr>
-            <tr class="borde-especial">
-                <td>Vaso_tapa</td>
-                <td id="sob_tapa"></td>
-                <td id="cant_vasotapa"></td>
-                <td>1.5</td>
-                <td id="imp_vasotapa"></td>
-            </tr>
-            <tr class="borde-especial">
-                <td>Festino</td>
-                <td id="sob_festino"></td>
-                <td id="cant_festino"></td>
-                <td>3.5</td>
-                <td id="imp_festino"></td>
-            </tr>
-            <tr class="borde-especial">
-                <td>Canaleado</td>
-                <td id="sob_canaleado"></td>
-                <td id="cant_canaleado"></td>
-                <td>1.1</td>
-                <td id="imp_canaleado"></td>
-            </tr>
-            <tr>
-                <td>Wafer</td>
-                <td id="sob_wafer"></td>
-                <td id="cant_wafer"></td>
-                <td>1.2</td>
-                <td id="imp_wafer"></td>
             </tr>
         </tbody>
     </table>
@@ -299,8 +181,5 @@
             <td><strong id="pagar"></strong></td>
         </tr>
     </table>
-   
-    
-
 </body>
 </html>
