@@ -24,6 +24,9 @@
         .borde-especial {
             border-bottom: 1px dashed lightgray;
         }
+        .segunda-table {
+            margin-top: 2px;
+        }
         .primera-table {
             border-bottom: 2px dashed black;
             margin-bottom: 5px;
@@ -94,92 +97,13 @@
     <script>
         function getQueryParams() {
             const urlParams = new URLSearchParams(window.location.search);
+            const campos = ["Nombre", "Fecha", "Hora", "cantbombon", "imp_crema", "cant_granizado", "cant_arbolito", 
+                            "cant_gemelo", "imp_agua", "cant_tamarindo", "cant_colores", "cant_cono", "imp_2bs", 
+                            "cant_bombonato", "cant_crocante", "imp_crocchoc", "cant_chococo", "cant_sandwich", 
+                            "cant_vasotapa", "imp_vasotapa", "cant_festino", "imp_festino", "cant_canaleado", 
+                            "imp_canaleado", "cant_wafer", "imp_wafer", "subtotal", "descuento", "recargo", 
+                            "pagar", "sob_bombon", "sob_granizado", "sob_arbolito", "sob_agua", "sob_cono", 
+                            "sob_bombonato", "sob_crocante", "sob_chococo", "sob_sandwich", "sob_tapa", 
+                            "sob_festino", "sob_canaleado", "sob_wafer"];
 
-            // Iterar automáticamente por todos los elementos que coincidan con un id
-            document.querySelectorAll("[id]").forEach(element => {
-                const value = urlParams.get(element.id);
-                if (value !== null) {
-                    // Verificar si el valor comienza con un signo de exclamación
-                    if (value.startsWith("!")) {
-                        const cleanValue = value.slice(1); // Eliminar el signo de exclamación
-                        element.innerHTML = `<span class="red">!</span>${cleanValue}`;
-                    } else {
-                        element.innerHTML = value;
-                    }
-                }
-            });
-
-            // Imprimir automáticamente después de cargar
-            window.print();
-        }
-
-        window.onload = getQueryParams; // Ejecutar al cargar la página
-    </script>
-</head>
-<body onload="getQueryParams()" onfocus="window.close()">
-    <div class="centrar-texto">
-        <p style="font-size: 14px;font-family: 'Roboto', sans-serif; margin-bottom: -10px;"><b>HELADERÍA PRIMAVERA</b></p>
-        <p style="font-size: 10px;font-family: Arial, sans-serif;line-height: 0;">TELÉFONO: 73196102 - 72627865</p> 
-        <h2>TICKET DE VENTA</h2>
-    </div>
-    
-    <div class="container">    
-        <p>Para:</p>
-        <p id="Nombre"></p>&nbsp;&nbsp;
-        <p>Fecha:</p>
-        <p id="Fecha"></p>&nbsp;&nbsp;
-        <p>H:</p>
-        <p id="Hora"></p>
-    </div>   
-        
-    <table class="primera-table">
-        <thead>
-            <tr>
-                <th>PRODUCTO</th>
-                <th>SOB</th>
-                <th>VEND</th>
-                <th>P.UNI</th>
-                <th>MONTO</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Bombón</td>
-                <td id="sob_bombon"></td>
-                <td id="cantbombon"></td>
-                <td rowspan="3">1</td>
-                <td rowspan="3" id="imp_crema"></td>
-            </tr>
-            <tr>
-                <td>Granizado</td>
-                <td id="sob_granizado"></td>
-                <td id="cant_granizado"></td>
-            </tr>
-            <tr class="borde-especial">
-                <td>Arbolito</td>
-                <td id="sob_arbolito"></td>
-                <td id="cant_arbolito"></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table class="tabla_total-table">
-        <tr>
-            <td>SUBTOTAL:</td>
-            <td id="subtotal"></td>
-        </tr>
-        <tr>
-            <td>DESCUENTO:</td>
-            <td id="descuento"></td>
-        </tr>
-        <tr>
-            <td>RECARGO:</td>
-            <td id="recargo"></td>
-        </tr>
-        <tr>
-            <td><strong>PAGAR:</strong></td>
-            <td><strong id="pagar"></strong></td>
-        </tr>
-    </table>
-</body>
-</html>
+            campos.for
