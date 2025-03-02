@@ -172,14 +172,7 @@
 
     window.onload = getQueryParams; // Ejecutar al cargar la página
  
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".primera-table tbody tr").forEach(row => {
-            let sob = row.cells[1].textContent.trim();
-            let monto = row.cells[4].textContent.trim();
-            if ((!sob || sob === "0") && (!monto || monto === "0")) {
-                row.style.display = "none";
-            }
-        });
+   
         
         let descuento = document.getElementById("descuento").textContent.trim();
         let recargo = document.getElementById("recargo").textContent.trim();
