@@ -163,7 +163,11 @@
                     }
                 }
             });
-     document.addEventListener("DOMContentLoaded", function () {
+   
+        // Ejecutar la impresión después de cargar los parámetros
+   window.print();
+    }
+  document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".primera-table tbody tr").forEach(row => {
             let sob = row.cells[1].textContent.trim();
             let monto = row.cells[4].textContent.trim();
@@ -183,13 +187,6 @@
             document.getElementById("row_recargo").style.display = "none";
         }
     });
-        // Ejecutar la impresión después de cargar los parámetros
-   window.print();
-    
-
-
-    }
-
     window.onload = getQueryParams; // Ejecutar al cargar la página
  
  
