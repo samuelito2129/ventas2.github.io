@@ -17,6 +17,7 @@
             font-size: 12px; 
             font-family: Arial, sans-serif;
             margin-top: 1px; /* Reduce el margen superior del párrafo */
+           
         }
         p {
             margin-right: 1px; /* Espacio entre los párrafos */
@@ -34,8 +35,8 @@
         }
         .primera-table {
             border-bottom: 2px dashed black;
-            margin-bottom: 5px; /* Cambia el grosor y color del borde inferior */
-           
+            margin-bottom: 1px; /* Cambia el grosor y color del borde inferior */
+           margin-top: -7px;
         }
         .primera-table th:nth-child(1),
         .primera-table td:nth-child(1) {
@@ -86,9 +87,10 @@
         h2 {
             font-size: 13px;
             font-family: 'Lexend', sans-serif;
-            margin-bottom: -15px; /* Reduce el margen inferior del título */
+            margin-bottom: -14px; /* Reduce el margen inferior del título */
             line-height: 1; /* Controla la altura de línea dentro del título */
             padding: 0px;
+            margin-top: -7px;
            
         }
 
@@ -141,9 +143,9 @@
     // Función para obtener los parámetros de la URL
     function getQueryParams() {
       const urlParams = new URLSearchParams(window.location.search);
-      const campos = ["Nombre", "Fecha", "Hora", "cantbombon", "imp_crema", "cant_granizado", "cant_arbolito", "cant_gemelo", 
-                      "imp_agua", "cant_tamarindo", "cant_colores", "cant_cono", "imp_2bs", "cant_bombonato", "cant_crocante", 
-                      "imp_crocchoc", "cant_chococo", "cant_sandwich", "cant_vasotapa", "imp_vasotapa", "cant_festino", 
+      const campos = ["Nombre", "Fecha", "Hora", "cantbombon", "imp_bombon", "cant_granizado", "imp_granizado", "cant_arbolito", "imp_arbolito", "cant_gemelo", 
+                      "imp_agua", "cant_tamarindo", "cant_colores", "cant_cono", "imp_cono", "cant_bombonato", "imp_bombonato", "cant_crocante", 
+                      "imp_crocante", "cant_chococo", "imp_chococo", "cant_sandwich", "imp_sandwich", "cant_vasotapa", "imp_vasotapa", "cant_festino", 
                       "imp_festino", "cant_canaleado", "imp_canaleado", "cant_wafer", "imp_wafer", "subtotal", "descuento", 
                       "recargo", "pagar", "sob_bombon", "sob_granizado", "sob_arbolito", "sob_agua", "sob_cono", "sob_bombonato", "sob_crocante", "sob_chococo", "sob_sandwich", "sob_tapa", "sob_festino", "sob_canaleado", "sob_wafer"];
 
@@ -170,12 +172,36 @@
 
     window.onload = getQueryParams; // Ejecutar al cargar la página
   </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".primera-table tbody tr").forEach(row => {
+            let sob = row.cells[1].textContent.trim();
+            let monto = row.cells[4].textContent.trim();
+            if ((!sob || sob === "0") && (!monto || monto === "0")) {
+                row.style.display = "none";
+            }
+        });
+        
+        let descuento = document.getElementById("descuento").textContent.trim();
+        let recargo = document.getElementById("recargo").textContent.trim();
+        
+        if (!descuento || descuento === "0") {
+            document.getElementById("row_descuento").style.display = "none";
+        }
+        
+        if (!recargo || recargo === "0") {
+            document.getElementById("row_recargo").style.display = "none";
+        }
+    });
+</script>
       
 </head>
 <body onload="getQueryParams()" onfocus="window.close()">
     <div class="centrar-texto">
-      <p style="font-size: 14px;font-family: 'Roboto', sans-serif;  margin-bottom: -10px;"><b>HELADERÍA PRIMAVERA</b></p>
-       <p style="font-size: 10px;font-family: Arial, sans-serif;line-height: 0;">TELÉFONO: 73196102 - 72627865</p> 
+        <img src="Primavera2.png" alt="Logo de Heladería Primavera" style="width: 130px; height: auto; margin-bottom: -27px; margin-top: 14px;">
+        <p style="font-size: 10px;font-family: Arial, sans-serif;border-bottom: -10px;"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="15" viewBox="0 0 48 48" style="vertical-align: middle;">
+            <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"></path><path fill="#fff" d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"></path><path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"></path><path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"></path><path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd"></path>
+            </svg>73196102 - 72627865</p> 
        <h2>TICKET DE VENTA</h2>
     </div>
     
@@ -185,129 +211,128 @@
         H:<span style="margin-left: 3px;" id="Hora"></span></p>
     </div>   
         
-    <table class="primera-table, primera-table">
-        <thead>
-            <tr>
-                <th>PRODUCTO</th>
-                <th>SOB</th>
-                <th>VEND</th>
-                <th>P.UNI</th>
-                <th>MONTO</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Bombón</td>
-                <td id="sob_bombon"></td>
-                <td id="cantbombon"></td>
-                <td rowspan="3">1</td>
-                <td rowspan="3", id="imp_crema"></td>
-               
-            </tr>
-            <tr>
-                <td>Granizado</td>
-                <td id="sob_granizado"></td>
-                <td id="cant_granizado"></td>
-                
-            </tr>
-            <tr class="borde-especial">
-                <td>Arbolito</td>
-                <td id="sob_arbolito"></td>
-                <td id="cant_arbolito"></td>
-                
-            </tr>
-            <tr class="borde-especial">
-                <td>P_Agua</td>
-                <td id="sob_agua"></td>
-                <td id="cant_colores"></td>
-                <td>0,6</td>
-                <td id="imp_agua"></td>
-            </tr>
-           
-            <tr>
-                <td>Cono</td>
-                <td id="sob_cono"></td>
-                <td id="cant_cono"></td>
-                <td rowspan="2">2</td>
-                <td rowspan="2", id="imp_2bs"></td>
-
-            </tr>
-            <tr class="borde-especial">
-                <td>Bombonato</td>
-                <td id="sob_bombonato"></td>
-                <td id="cant_bombonato"></td>
-                
-            </tr>
-           
-            <tr>
-                <td>Crocante</td>
-                <td id="sob_crocante"></td>
-                <td id="cant_crocante"></td>
-                <td rowspan="3">2.5</td>
-                <td rowspan="3", id="imp_crocchoc"></td>
-            </tr>
-            <tr>
-                <td>Chococo</td>
-                <td id="sob_chococo"></td>
-                <td id="cant_chococo"></td>
-                
-            </tr>
-            <tr class="borde-especial">
-                <td>Sandwich</td>
-                <td id="sob_sandwich"></td>
-                <td id="cant_sandwich"></td>
-                
-            </tr>
-            <tr class="borde-especial">
-                <td>Vaso_tapa</td>
-                <td id="sob_tapa"></td>
-                <td id="cant_vasotapa"></td>
-                <td>1.5</td>
-                <td id="imp_vasotapa"></td>
-            </tr>
-            <tr class="borde-especial">
-                <td>Festino</td>
-                <td id="sob_festino"></td>
-                <td id="cant_festino"></td>
-                <td>3.5</td>
-                <td id="imp_festino"></td>
-            </tr>
-            <tr class="borde-especial">
-                <td>Canaleado</td>
-                <td id="sob_canaleado"></td>
-                <td id="cant_canaleado"></td>
-                <td>1.1</td>
-                <td id="imp_canaleado"></td>
-            </tr>
-            <tr>
-                <td>Wafer</td>
-                <td id="sob_wafer"></td>
-                <td id="cant_wafer"></td>
-                <td>1.2</td>
-                <td id="imp_wafer"></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table class="tabla_total-table">
+    <table class="primera-table">
+    <thead>
         <tr>
-            <td>SUBTOTAL:</td>
-            <td id="subtotal"></td>
+            <th>PRODUCTO</th>
+            <th>SOB</th>
+            <th>VEND</th>
+            <th>P.UNI</th>
+            <th>MONTO</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Bombón</td>
+            <td id="sob_bombon"></td>
+            <td id="cantbombon"></td>
+            <td>1</td>
+            <td id="imp_bombon"></td>
         </tr>
         <tr>
-            <td>DESCUENTO:</td>
-            <td id="descuento"></td>
+            <td>Granizado</td>
+            <td id="sob_granizado"></td>
+            <td id="cant_granizado"></td>
+            <td>1</td>
+            <td id="imp_granizado"></td>
+        </tr>
+        <tr class="borde-especial">
+            <td>Arbolito</td>
+            <td id="sob_arbolito"></td>
+            <td id="cant_arbolito"></td>
+            <td>1</td>
+            <td id="imp_arbolito"></td>
+        </tr>
+        <tr class="borde-especial">
+            <td>P_Agua</td>
+            <td id="sob_agua"></td>
+            <td id="cant_colores"></td>
+            <td>0.6</td>
+            <td id="imp_agua"></td>
         </tr>
         <tr>
-            <td>RECARGO:</td>
-            <td id="recargo"></td>
+            <td>Cono</td>
+            <td id="sob_cono"></td>
+            <td id="cant_cono"></td>
+            <td>2</td>
+            <td id="imp_cono"></td>
+        </tr>
+        <tr class="borde-especial">
+            <td>Bombonato</td>
+            <td id="sob_bombonato"></td>
+            <td id="cant_bombonato"></td>
+            <td>2</td>
+            <td id="imp_bombonato"></td>
         </tr>
         <tr>
-            <td><strong>PAGAR:</strong></td>
-            <td><strong id="pagar"></strong></td>
+            <td>Crocante</td>
+            <td id="sob_crocante"></td>
+            <td id="cant_crocante"></td>
+            <td>2.5</td>
+            <td id="imp_crocante"></td>
         </tr>
-    </table>
+        <tr>
+            <td>Chococo</td>
+            <td id="sob_chococo"></td>
+            <td id="cant_chococo"></td>
+            <td>2.5</td>
+            <td id="imp_chococo"></td>
+        </tr>
+        <tr class="borde-especial">
+            <td>Sandwich</td>
+            <td id="sob_sandwich"></td>
+            <td id="cant_sandwich"></td>
+            <td>2.5</td>
+            <td id="imp_sandwich"></td>
+        </tr>
+        <tr class="borde-especial">
+            <td>Vaso_tapa</td>
+            <td id="sob_tapa"></td>
+            <td id="cant_vasotapa"></td>
+            <td>1.5</td>
+            <td id="imp_vasotapa"></td>
+        </tr>
+        <tr class="borde-especial">
+            <td>Festino</td>
+            <td id="sob_festino"></td>
+            <td id="cant_festino"></td>
+            <td>3.5</td>
+            <td id="imp_festino"></td>
+        </tr>
+        <tr class="borde-especial">
+            <td>Canaleado</td>
+            <td id="sob_canaleado"></td>
+            <td id="cant_canaleado"></td>
+            <td>1.1</td>
+            <td id="imp_canaleado"></td>
+        </tr>
+        <tr>
+            <td>Wafer</td>
+            <td id="sob_wafer"></td>
+            <td id="cant_wafer"></td>
+            <td>1.2</td>
+            <td id="imp_wafer"></td>
+        </tr>
+    </tbody>
+</table>
+<table class="tabla_total-table">
+    <tr>
+        <td>SUBTOTAL:</td>
+        <td id="subtotal"></td>
+    </tr>
+    <tr id="row_descuento">
+        <td>DESCUENTO:</td>
+        <td id="descuento"></td>
+    </tr>
+    <tr id="row_recargo">
+        <td>RECARGO:</td>
+        <td id="recargo"></td>
+    </tr>
+    <tr>
+        <td><strong>PAGAR:</strong></td>
+        <td><strong id="pagar"></strong></td>
+    </tr>
+</table>
    
     
 
