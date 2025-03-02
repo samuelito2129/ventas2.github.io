@@ -140,40 +140,7 @@
             
       </style>
   <script>
-       // Función para ocultar filas donde las celdas de SOB y MONTO estén vacías o sean cero
-    function ocultarFilasVacias() {
-        // Seleccionar la primera tabla
-        const tabla = document.querySelector('.primera-table');
-        if (!tabla) return; // Si no existe la tabla, salir
-
-        // Seleccionar todas las filas de la tabla (excluyendo la cabecera)
-        const filas = tabla.querySelectorAll('tbody tr');
-
-        // Recorrer cada fila
-        filas.forEach(fila => {
-            // Obtener las celdas de SOB y MONTO
-            const celdaSOB = fila.querySelector('td:nth-child(2)'); // Columna SOB
-            const celdaMONTO = fila.querySelector('td:nth-child(5)'); // Columna MONTO
-
-            // Verificar si las celdas existen
-            if (!celdaSOB || !celdaMONTO) return;
-
-            // Obtener el texto de las celdas y eliminar espacios en blanco
-            const sobValor = celdaSOB.textContent.trim();
-            const montoValor = celdaMONTO.textContent.trim();
-
-            // Verificar si las celdas están vacías o tienen valor 0
-            const sobVacio = sobValor === '' || sobValor === '0';
-            const montoVacio = montoValor === '' || montoValor === '0';
-
-            // Si ambas celdas están vacías o son cero, ocultar la fila
-            if (sobVacio && montoVacio) {
-                fila.style.display = 'none'; // Ocultar la fila
-            }
-        });
-    }
-
-    // Función para obtener los parámetros de la URL
+      // Función para obtener los parámetros de la URL
     function getQueryParams() {
       const urlParams = new URLSearchParams(window.location.search);
       const campos = ["Nombre", "Fecha", "Hora", "cantbombon", "imp_bombon", "cant_granizado", "imp_granizado", "cant_arbolito", "imp_arbolito", "cant_gemelo", 
@@ -196,13 +163,26 @@
                     }
                 }
             });
-    // Ejecutar la función para ocultar filas vacías después de llenar los datos
-        ocultarFilasVacias();
-    }  
+    function ocultarFilas() {
+            const table = document.getElementById("detalleVentas");
+            const rows = table.getElementsByTagName("tr");
+            
+            for (let i = 1; i < rows.length; i++) { // Empezamos en 1 para omitir la cabecera
+                const cells = rows[i].getElementsByTagName("td");
+                if (cells.length >= 3) {
+                    const sob = cells[1].innerText.trim(); // Columna SOB
+                    const monto = cells[2].innerText.trim(); // Columna MONTO
+                    
+                    if ((sob === "" || sob === "0") && (monto === "" || monto === "0")) {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        }
         // Ejecutar la impresión después de cargar los parámetros
    window.print();
     }
- 
+ ocultarFilas();
     window.onload = getQueryParams; // Ejecutar al cargar la página
  
 
