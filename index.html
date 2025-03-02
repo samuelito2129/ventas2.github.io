@@ -163,7 +163,14 @@
                     }
                 }
             });
-     // Ocultar filas si "cantidad" es vacía o cero
+     
+        // Ejecutar la impresión después de cargar los parámetros
+   window.print();
+    }
+ 
+    window.onload = getQueryParams; // Ejecutar al cargar la página
+ 
+ // Ocultar filas si "cantidad" es vacía o cero
         document.querySelectorAll("tbody tr").forEach(tr => {
             const cantidadTd = tr.querySelector("td:nth-child(2)"); // Segunda columna
             if (cantidadTd) {
@@ -173,13 +180,6 @@
                 }
             }
         });
-        // Ejecutar la impresión después de cargar los parámetros
-   window.print();
-    }
- 
-    window.onload = getQueryParams; // Ejecutar al cargar la página
- 
- 
         
    
 </script>
