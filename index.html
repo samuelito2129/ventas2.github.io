@@ -163,30 +163,38 @@
                     }
                 }
             });
-    function ocultarFilas() {
-            const table = document.getElementById("primera-table");
-            const rows = table.getElementsByTagName("tr");
-            
-            for (let i = 1; i < rows.length; i++) { // Empezamos en 1 para omitir la cabecera
-                const cells = rows[i].getElementsByTagName("td");
-                if (cells.length >= 3) {
-                    const sob = cells[1].innerText.trim(); // Columna SOB
-                    const monto = cells[2].innerText.trim(); // Columna MONTO
-                    
-                    if ((sob === "" || sob === "0") && (monto === "" || monto === "0")) {
-                        rows[i].style.display = "none";
-                    }
-                }
-            }
-        }
+    
         // Ejecutar la impresión después de cargar los parámetros
    window.print();
     }
- ocultarFilas();
     window.onload = getQueryParams; // Ejecutar al cargar la página
  
 
 </script>
+   <script>
+    function ocultarFilas() {
+        const table = document.getElementById("detalleVentas");
+        const rows = table.getElementsByTagName("tr");
+        
+        for (let i = 1; i < rows.length; i++) { // Empezamos en 1 para omitir la cabecera
+            const cells = rows[i].getElementsByTagName("td");
+            if (cells.length >= 3) {
+                const sob = cells[1].innerHTML.trim(); // Columna SOB
+                const monto = cells[2].innerHTML.trim(); // Columna MONTO
+                
+                if ((sob === "" || sob === "0") && (monto === "" || monto === "0")) {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        ocultarFilas();
+        window.print();
+    });
+</script>
+ 
       
 </head>
 <body onload="getQueryParams()" onfocus="window.close()">
