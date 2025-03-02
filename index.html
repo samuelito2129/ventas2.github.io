@@ -170,18 +170,7 @@
  
     window.onload = getQueryParams; // Ejecutar al cargar la página
  
- // Ocultar filas si "cantidad" es vacía o cero
-        document.querySelectorAll("tbody tr").forEach(tr => {
-            const cantidadTd = tr.querySelector("td:nth-child(2)"); // Segunda columna
-            if (cantidadTd) {
-                const cantidad = cantidadTd.innerText.trim();
-                if (SOB === "" || SOB === "0") {
-                    tr.style.display = "none";
-                }
-            }
-        });
-        
-   
+
 </script>
       
 </head>
