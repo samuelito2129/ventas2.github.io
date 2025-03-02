@@ -140,6 +140,39 @@
             
       </style>
   <script>
+       // Función para ocultar filas donde las celdas de SOB y MONTO estén vacías o sean cero
+    function ocultarFilasVacias() {
+        // Seleccionar la primera tabla
+        const tabla = document.querySelector('.primera-table');
+        if (!tabla) return; // Si no existe la tabla, salir
+
+        // Seleccionar todas las filas de la tabla (excluyendo la cabecera)
+        const filas = tabla.querySelectorAll('tbody tr');
+
+        // Recorrer cada fila
+        filas.forEach(fila => {
+            // Obtener las celdas de SOB y MONTO
+            const celdaSOB = fila.querySelector('td:nth-child(2)'); // Columna SOB
+            const celdaMONTO = fila.querySelector('td:nth-child(5)'); // Columna MONTO
+
+            // Verificar si las celdas existen
+            if (!celdaSOB || !celdaMONTO) return;
+
+            // Obtener el texto de las celdas y eliminar espacios en blanco
+            const sobValor = celdaSOB.textContent.trim();
+            const montoValor = celdaMONTO.textContent.trim();
+
+            // Verificar si las celdas están vacías o tienen valor 0
+            const sobVacio = sobValor === '' || sobValor === '0';
+            const montoVacio = montoValor === '' || montoValor === '0';
+
+            // Si ambas celdas están vacías o son cero, ocultar la fila
+            if (sobVacio && montoVacio) {
+                fila.style.display = 'none'; // Ocultar la fila
+            }
+        });
+    }
+
     // Función para obtener los parámetros de la URL
     function getQueryParams() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -163,7 +196,9 @@
                     }
                 }
             });
-     
+    // Ejecutar la función para ocultar filas vacías después de llenar los datos
+        ocultarFilasVacias();
+    }  
         // Ejecutar la impresión después de cargar los parámetros
    window.print();
     }
@@ -311,36 +346,5 @@
         <td><strong id="pagar"></strong></td>
     </tr>
 </table>
-<script>
-    // Función para ocultar filas donde las celdas de SOB y MONTO estén vacías o sean cero
-    function ocultarFilasVacias() {
-        // Seleccionar la primera tabla
-        const tabla = document.querySelector('.primera-table');
-        // Seleccionar todas las filas de la tabla (excluyendo la cabecera)
-        const filas = tabla.querySelectorAll('tbody tr');
-
-        // Recorrer cada fila
-        filas.forEach(fila => {
-            // Obtener las celdas de SOB y MONTO
-            const celdaSOB = fila.querySelector('td:nth-child(2)'); // Columna SOB
-            const celdaMONTO = fila.querySelector('td:nth-child(5)'); // Columna MONTO
-
-            // Verificar si las celdas están vacías, tienen valor 0 o no tienen valor
-            const sobVacio = !celdaSOB.textContent.trim() || celdaSOB.textContent.trim() === '0';
-            const montoVacio = !celdaMONTO.textContent.trim() || celdaMONTO.textContent.trim() === '0';
-
-            // Si ambas celdas están vacías o son cero, ocultar la fila
-            if (sobVacio && montoVacio) {
-                fila.style.display = 'none'; // Ocultar la fila
-            }
-        });
-    }
-
-    // Ejecutar la función al cargar la página
-    window.onload = function () {
-        getQueryParams(); // Llenar los datos desde la URL
-        ocultarFilasVacias(); // Ocultar filas vacías
-    };
-</script>    
 </body>
 </html>
