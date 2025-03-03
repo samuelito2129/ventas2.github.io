@@ -163,38 +163,30 @@
                     }
                 }
             });
-    
-        // Ejecutar la impresión después de cargar los parámetros
-   window.print();
-    }
-    document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll(".primera-table tbody tr").forEach(row => {
+    document.querySelectorAll(".primera-table tbody tr").forEach(row => {
                 let sob = row.cells[1]?.textContent.trim();
                 let monto = row.cells[4]?.textContent.trim();
                 if ((!sob || sob === "0") && (!monto || monto === "0")) {
                     row.style.display = "none";
                 }
             });
-            
+
             const descuentoElem = document.getElementById("descuento");
             const recargoElem = document.getElementById("recargo");
             
-            if (descuentoElem) {
-                let descuento = descuentoElem.textContent.trim();
-                if (!descuento || descuento === "0") {
-                    const rowDescuento = document.getElementById("row_descuento");
-                    if (rowDescuento) rowDescuento.style.display = "none";
-                }
+            if (descuentoElem && (!descuentoElem.textContent.trim() || descuentoElem.textContent.trim() === "0")) {
+                const rowDescuento = document.getElementById("row_descuento");
+                if (rowDescuento) rowDescuento.style.display = "none";
             }
             
-            if (recargoElem) {
-                let recargo = recargoElem.textContent.trim();
-                if (!recargo || recargo === "0") {
-                    const rowRecargo = document.getElementById("row_recargo");
-                    if (rowRecargo) rowRecargo.style.display = "none";
-                }
+            if (recargoElem && (!recargoElem.textContent.trim() || recargoElem.textContent.trim() === "0")) {
+                const rowRecargo = document.getElementById("row_recargo");
+                if (rowRecargo) rowRecargo.style.display = "none";
             }
-        });
+            
+            window.print();
+        }
+      
 </script>
  
       
