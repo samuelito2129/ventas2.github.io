@@ -173,10 +173,17 @@
         const sobCell = row.querySelector('td:nth-child(2)'); // Columna SOB
         const montoCell = row.querySelector('td:nth-child(5)'); // Columna MONTO
 
-        // Verificar si las celdas están vacías, tienen valor 0 o no tienen valor
+        // Verificar si las celdas existen (por si la estructura de la tabla cambia)
+        if (!sobCell || !montoCell) {
+            console.error("No se encontraron las celdas SOB o MONTO en la fila:", row);
+            return;
+        }
+
+        // Obtener los valores de las celdas y eliminar espacios en blanco
         const sobValue = sobCell.textContent.trim();
         const montoValue = montoCell.textContent.trim();
 
+        // Verificar si las celdas están vacías, tienen valor 0 o no tienen valor
         if (sobValue === '0' || sobValue === '' || montoValue === '0' || montoValue === '') {
             // Ocultar la fila si cumple con las condiciones
             row.style.display = 'none';
@@ -190,7 +197,7 @@
 // Llamar a la función hideEmptyRows después de cargar los parámetros
 window.onload = function () {
     getQueryParams(); // Cargar los parámetros
-    hideEmptyRows();  // Ocultar filas vacías
+    setTimeout(hideEmptyRows, 100);  // Esperar 100ms para asegurar que los parámetros se carguen
 };
      // Ejecutar la impresión después de cargar los parámetros
    window.print();
