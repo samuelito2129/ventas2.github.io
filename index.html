@@ -174,10 +174,10 @@
         const montoCell = row.querySelector('td:nth-child(5)'); // Columna MONTO
 
         // Verificar si las celdas están vacías, tienen valor 0 o no tienen valor
-        const sobValue = sobCell.textContent.trim();
-        const montoValue = montoCell.textContent.trim();
+        const SOBValue = SOBCell.textContent.trim();
+        const MONTOValue = MONTOCell.textContent.trim();
 
-        if (sobValue === '0' || sobValue === '' || montoValue === '0' || montoValue === '') {
+        if (SOBValue === '0' || SOBValue === '' || MONTOValue === '0' || MONTOValue === '') {
             // Ocultar la fila si cumple con las condiciones
             row.style.display = 'none';
         } else {
