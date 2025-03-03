@@ -180,7 +180,35 @@ document.querySelectorAll("tbody tr").forEach(tr => {
         }
     }
 });
-    
+    function ocultarFilasTotales() {
+        // Obtener las filas por su ID
+        const filaDescuento = document.getElementById("row_descuento");
+        const filaRecargo = document.getElementById("row_recargo");
+
+        // Función para extraer solo el valor numérico de la celda
+        function obtenerValorNumerico(celda) {
+            if (!celda) return 0; // Si la celda no existe, retorna 0
+            let texto = celda.textContent.trim(); // Obtener el texto y limpiar espacios
+            let numero = parseFloat(texto.replace(/[^\d.-]/g, "")); // Extraer solo el número
+            return isNaN(numero) ? 0 : numero; // Si no es número, retorna 0
+        }
+
+        // Obtener los valores numéricos de las celdas de descuento y recargo
+        const valorDescuento = filaDescuento ? obtenerValorNumerico(filaDescuento.cells[1]) : 0;
+        const valorRecargo = filaRecargo ? obtenerValorNumerico(filaRecargo.cells[1]) : 0;
+
+        // Ocultar la fila si el valor es 0
+        if (valorDescuento === 0) {
+            filaDescuento.style.display = "none";
+        }
+        if (valorRecargo === 0) {
+            filaRecargo.style.display = "none";
+        }
+    }
+
+    // Ejecutar la función después de cargar los valores
+    setTimeout(ocultarFilasTotales, 100);
+        
      // Ejecutar la impresión después de cargar los parámetros
    window.print();
      }
@@ -326,36 +354,7 @@ document.querySelectorAll("tbody tr").forEach(tr => {
         <td><strong id="pagar"></strong></td>
     </tr>
 </table>
-    <script>
-    function ocultarFilasTotales() {
-        // Obtener las filas por su ID
-        const filaDescuento = document.getElementById("row_descuento");
-        const filaRecargo = document.getElementById("row_recargo");
-
-        // Función para extraer solo el valor numérico de la celda
-        function obtenerValorNumerico(celda) {
-            if (!celda) return 0; // Si la celda no existe, retorna 0
-            let texto = celda.textContent.trim(); // Obtener el texto y limpiar espacios
-            let numero = parseFloat(texto.replace(/[^\d.-]/g, "")); // Extraer solo el número
-            return isNaN(numero) ? 0 : numero; // Si no es número, retorna 0
-        }
-
-        // Obtener los valores numéricos de las celdas de descuento y recargo
-        const valorDescuento = filaDescuento ? obtenerValorNumerico(filaDescuento.cells[1]) : 0;
-        const valorRecargo = filaRecargo ? obtenerValorNumerico(filaRecargo.cells[1]) : 0;
-
-        // Ocultar la fila si el valor es 0
-        if (valorDescuento === 0) {
-            filaDescuento.style.display = "none";
-        }
-        if (valorRecargo === 0) {
-            filaRecargo.style.display = "none";
-        }
-    }
-
-    // Ejecutar la función después de cargar los valores
-    setTimeout(ocultarFilasTotales, 100);
-</script>
+  
 
 </body>
 </html>
