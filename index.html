@@ -209,9 +209,12 @@ document.querySelectorAll("tbody tr").forEach(tr => {
     // Ejecutar la función después de cargar los valores
     setTimeout(ocultarFilasTotales, 100);
         
-     // Ejecutar la impresión después de cargar los parámetros
-   window.print();
-     }
+      // Retrasar la impresión para que se reflejen los cambios en el DOM
+        setTimeout(() => {
+            window.print();
+        }, 300); // Espera 300ms antes de imprimir
+    }
+
 
     window.onload = getQueryParams; // Ejecutar al cargar la página
 
