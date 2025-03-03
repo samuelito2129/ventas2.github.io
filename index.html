@@ -163,16 +163,23 @@
                     }
                 }
             });
-     // Ocultar filas si "cantidad" es vacía o cero
-        document.querySelectorAll("tbody tr").forEach(tr => {
-            const SOBTd = tr.querySelector("td:nth-child(2)"); // Segunda columna
-            if (SOBTd) {
-                const SOB = SOBTd.innerText.trim();
-                if (SOB === "" || SOB === "0") {
-                    tr.style.display = "none";
-                }
-            }
-        });
+     // Ocultar filas si "SOB" y "MONTO" están vacíos o son cero
+document.querySelectorAll("tbody tr").forEach(tr => {
+    const SOBTd = tr.querySelector("td:nth-child(2)"); // Columna SOB (segunda columna)
+    const MontoTd = tr.querySelector("td:nth-child(5)"); // Columna MONTO (quinta columna)
+
+    if (SOBTd && MontoTd) {
+        const SOB = SOBTd.innerText.trim(); // Obtener el valor de SOB
+        const Monto = MontoTd.innerText.trim(); // Obtener el valor de MONTO
+
+        // Verificar si ambas celdas están vacías o tienen el valor "0"
+        if ((SOB === "" || SOB === "0") && (Monto === "" || Monto === "0")) {
+            tr.style.display = "none"; // Ocultar la fila
+        } else {
+            tr.style.display = ""; // Mostrar la fila si tiene valores válidos
+        }
+    }
+});
      // Ejecutar la impresión después de cargar los parámetros
    window.print();
      }
