@@ -139,7 +139,65 @@
 }
             
       </style>
-  
+   <script>
+    // Función para obtener los parámetros de la URL
+    function getQueryParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const campos = ["Nombre", "Fecha", "Hora", "cantbombon", "imp_bombon", "cant_granizado", "imp_granizado", "cant_arbolito", "imp_arbolito", "cant_gemelo", 
+                      "imp_agua", "cant_tamarindo", "cant_colores", "cant_cono", "imp_cono", "cant_bombonato", "imp_bombonato", "cant_crocante", 
+                      "imp_crocante", "cant_chococo", "imp_chococo", "cant_sandwich", "imp_sandwich", "cant_vasotapa", "imp_vasotapa", "cant_festino", 
+                      "imp_festino", "cant_canaleado", "imp_canaleado", "cant_wafer", "imp_wafer", "subtotal", "descuento", 
+                      "recargo", "pagar", "sob_bombon", "sob_granizado", "sob_arbolito", "sob_agua", "sob_cono", "sob_bombonato", "sob_crocante", "sob_chococo", "sob_sandwich", "sob_tapa", "sob_festino", "sob_canaleado", "sob_wafer"];
+
+      // Rellenar los campos si existen en los parámetros de la URL
+      campos.forEach(campo => {
+        const valor = urlParams.get(campo);
+        if (valor !== null) {
+        const elemento = document.getElementById(campo);
+                    // Verificar si el valor comienza con "!"
+                    if (valor.startsWith("!")) {
+                        const cleanValue = valor.slice(1); // Remover "!"
+                        elemento.innerHTML = `<span class="red">!</span>${cleanValue}`;
+                    } else {
+                        elemento.innerHTML = valor;
+                    }
+                }
+            });
+        function hideEmptyRows() {
+    // Seleccionar todas las filas de la primera tabla (excluyendo el encabezado)
+    const rows = document.querySelectorAll('.primera-table tbody tr');
+
+    // Recorrer cada fila
+    rows.forEach(row => {
+        // Obtener las celdas de las columnas SOB y MONTO
+        const sobCell = row.querySelector('td:nth-child(2)'); // Columna SOB
+        const montoCell = row.querySelector('td:nth-child(5)'); // Columna MONTO
+
+        // Verificar si las celdas están vacías, tienen valor 0 o no tienen valor
+        const sobValue = sobCell.textContent.trim();
+        const montoValue = montoCell.textContent.trim();
+
+        if (sobValue === '0' || sobValue === '' || montoValue === '0' || montoValue === '') {
+            // Ocultar la fila si cumple con las condiciones
+            row.style.display = 'none';
+        } else {
+            // Mostrar la fila si tiene valores válidos
+            row.style.display = '';
+        }
+    });
+}
+
+// Llamar a la función hideEmptyRows después de cargar los parámetros
+window.onload = function () {
+    getQueryParams(); // Cargar los parámetros
+    hideEmptyRows();  // Ocultar filas vacías
+};
+     // Ejecutar la impresión después de cargar los parámetros
+   window.print();
+     }
+
+    window.onload = getQueryParams; // Ejecutar al cargar la página
+  </script>
 </head>
 <body onload="getQueryParams()" onfocus="window.close(">
     <div class="centrar-texto">
@@ -278,67 +336,5 @@
         <td><strong id="pagar"></strong></td>
     </tr>
 </table>
-   
-<script>
-    // Función para obtener los parámetros de la URL y rellenar la tabla
-    function getQueryParams() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const campos = ["Nombre", "Fecha", "Hora", "cantbombon", "imp_bombon", "cant_granizado", "imp_granizado", "cant_arbolito", "imp_arbolito", 
-                        "cant_gemelo", "imp_agua", "cant_tamarindo", "cant_colores", "cant_cono", "imp_cono", "cant_bombonato", "imp_bombonato", 
-                        "cant_crocante", "imp_crocante", "cant_chococo", "imp_chococo", "cant_sandwich", "imp_sandwich", "cant_vasotapa", 
-                        "imp_vasotapa", "cant_festino", "imp_festino", "cant_canaleado", "imp_canaleado", "cant_wafer", "imp_wafer", "subtotal", 
-                        "descuento", "recargo", "pagar", "sob_bombon", "sob_granizado", "sob_arbolito", "sob_agua", "sob_cono", "sob_bombonato", 
-                        "sob_crocante", "sob_chococo", "sob_sandwich", "sob_tapa", "sob_festino", "sob_canaleado", "sob_wafer"];
-
-        // Rellenar los valores en la tabla si existen
-        campos.forEach(campo => {
-            const valor = urlParams.get(campo);
-            if (valor !== null) {
-                const elemento = document.getElementById(campo);
-                if (elemento) {
-                    // Si el valor comienza con "!", mostrar en rojo
-                    if (valor.startsWith("!")) {
-                        const cleanValue = valor.slice(1);
-                        elemento.innerHTML = `<span class="red">!</span>${cleanValue}`;
-                    } else {
-                        elemento.innerHTML = valor;
-                    }
-                }
-            }
-        });
-
-        // Llamar a la función para ocultar filas después de un pequeño retraso
-        setTimeout(ocultarFilasVacias, 50);
-
-        // Ejecutar impresión después de cargar los parámetros
-        window.print();
-    }
-
-    // Función para ocultar filas con valores vacíos o "0" en "SOB" y "MONTO"
-    function ocultarFilasVacias() {
-        const filas = document.querySelectorAll(".primera-table tbody tr");
-
-        filas.forEach(fila => {
-            const celdas = fila.getElementsByTagName("td");
-
-            if (celdas.length > 0) {
-                // Obtener valores de las columnas "SOB" (índice 1) y "MONTO" (índice 4)
-                const sob = celdas[1]?.textContent.trim() || "0";  
-                const monto = celdas[4]?.textContent.trim() || "0"; 
-
-                // Verificar si ambas están vacías o en "0"
-                if ((sob === "" || sob === "0") && (monto === "" || monto === "0")) {
-                    fila.style.display = "none"; // Ocultar fila
-                }
-            }
-        });
-    }
-
-    // Ejecutar al cargar la página
-    window.onload = getQueryParams;
-</script>
-
-    
-
 </body>
 </html>
