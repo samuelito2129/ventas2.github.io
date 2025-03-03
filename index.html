@@ -280,7 +280,7 @@
 </table>
    
 <script>
-    // Función para obtener los parámetros de la URL
+    // Función para obtener los parámetros de la URL y rellenar la tabla
     function getQueryParams() {
         const urlParams = new URLSearchParams(window.location.search);
         const campos = ["Nombre", "Fecha", "Hora", "cantbombon", "imp_bombon", "cant_granizado", "imp_granizado", "cant_arbolito", "imp_arbolito", 
@@ -307,14 +307,14 @@
             }
         });
 
-        // Llamar a la función para ocultar filas vacías después de cargar los valores
-        ocultarFilasVacias();
+        // Llamar a la función para ocultar filas después de un pequeño retraso
+        setTimeout(ocultarFilasVacias, 50);
 
         // Ejecutar impresión después de cargar los parámetros
         window.print();
     }
 
-    // Función para ocultar filas vacías o con valores "0"
+    // Función para ocultar filas con valores vacíos o "0" en "SOB" y "MONTO"
     function ocultarFilasVacias() {
         const filas = document.querySelectorAll(".primera-table tbody tr");
 
@@ -322,11 +322,13 @@
             const celdas = fila.getElementsByTagName("td");
 
             if (celdas.length > 0) {
-                const sob = celdas[1]?.textContent.trim() || "0";  // Columna SOB
-                const monto = celdas[4]?.textContent.trim() || "0"; // Columna MONTO
+                // Obtener valores de las columnas "SOB" (índice 1) y "MONTO" (índice 4)
+                const sob = celdas[1]?.textContent.trim() || "0";  
+                const monto = celdas[4]?.textContent.trim() || "0"; 
 
+                // Verificar si ambas están vacías o en "0"
                 if ((sob === "" || sob === "0") && (monto === "" || monto === "0")) {
-                    fila.style.display = "none"; // Oculta la fila
+                    fila.style.display = "none"; // Ocultar fila
                 }
             }
         });
@@ -335,6 +337,7 @@
     // Ejecutar al cargar la página
     window.onload = getQueryParams;
 </script>
+
     
 
 </body>
