@@ -163,35 +163,16 @@
                     }
                 }
             });
-    function hideEmptyRows() {
-    // Seleccionar todas las filas de la primera tabla (excluyendo el encabezado)
-    const rows = document.querySelectorAll('.primera-table tbody tr');
-
-    // Recorrer cada fila
-    rows.forEach(row => {
-        // Obtener las celdas de las columnas SOB y MONTO
-        const SOBCell = row.querySelector('td:nth-child(2)'); // Columna SOB
-        const MONTOCell = row.querySelector('td:nth-child(5)'); // Columna MONTO
-
-        // Verificar si las celdas están vacías, tienen valor 0 o no tienen valor
-        const SOBValue = SOBCell.textContent.trim();
-        const MONTOValue = MONTOCell.textContent.trim();
-
-        if (SOBValue === '0' || SOBValue === '' || MONTOValue === '0' || MONTOValue === '') {
-            // Ocultar la fila si cumple con las condiciones
-            row.style.display = 'none';
-        } else {
-            // Mostrar la fila si tiene valores válidos
-            row.style.display = '';
-        }
-    });
-}
-
-// Llamar a la función hideEmptyRows después de cargar los parámetros
-window.onload = function () {
-    getQueryParams(); // Cargar los parámetros
-    hideEmptyRows();  // Ocultar filas vacías
-};
+     // Ocultar filas si "cantidad" es vacía o cero
+        document.querySelectorAll("tbody tr").forEach(tr => {
+            const SOBTd = tr.querySelector("td:nth-child(2)"); // Segunda columna
+            if (SOBTd) {
+                const SOB = SOBTd.innerText.trim();
+                if (SOB === "" || SOB === "0") {
+                    tr.style.display = "none";
+                }
+            }
+        });
      // Ejecutar la impresión después de cargar los parámetros
    window.print();
      }
