@@ -167,32 +167,34 @@
         // Ejecutar la impresión después de cargar los parámetros
    window.print();
     }
-    window.onload = getQueryParams; // Ejecutar al cargar la página
- 
-
-</script>
-   <script>
-    function ocultarFilas() {
-        const table = document.getElementById("primera-table");
-        const rows = table.getElementsByTagName("tr");
-        
-        for (let i = 1; i < rows.length; i++) { // Empezamos en 1 para omitir la cabecera
-            const cells = rows[i].getElementsByTagName("td");
-            if (cells.length >= 3) {
-                const sob = cells[1].innerHTML.trim(); // Columna SOB
-                const monto = cells[2].innerHTML.trim(); // Columna MONTO
-                
-                if ((sob === "" || sob === "0") && (monto === "" || monto === "0")) {
-                    rows[i].style.display = "none";
+    document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".primera-table tbody tr").forEach(row => {
+                let sob = row.cells[1]?.textContent.trim();
+                let monto = row.cells[4]?.textContent.trim();
+                if ((!sob || sob === "0") && (!monto || monto === "0")) {
+                    row.style.display = "none";
+                }
+            });
+            
+            const descuentoElem = document.getElementById("descuento");
+            const recargoElem = document.getElementById("recargo");
+            
+            if (descuentoElem) {
+                let descuento = descuentoElem.textContent.trim();
+                if (!descuento || descuento === "0") {
+                    const rowDescuento = document.getElementById("row_descuento");
+                    if (rowDescuento) rowDescuento.style.display = "none";
                 }
             }
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        ocultarFilas();
-        window.print();
-    });
+            
+            if (recargoElem) {
+                let recargo = recargoElem.textContent.trim();
+                if (!recargo || recargo === "0") {
+                    const rowRecargo = document.getElementById("row_recargo");
+                    if (rowRecargo) rowRecargo.style.display = "none";
+                }
+            }
+        });
 </script>
  
       
