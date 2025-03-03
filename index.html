@@ -163,7 +163,13 @@
                     }
                 }
             });
-        function hideEmptyRows() {
+        
+     // Ejecutar la impresión después de cargar los parámetros
+   window.print();
+     }
+
+    window.onload = getQueryParams; // Ejecutar al cargar la página
+function hideEmptyRows() {
     // Seleccionar todas las filas de la primera tabla (excluyendo el encabezado)
     const rows = document.querySelectorAll('.primera-table tbody tr');
 
@@ -199,11 +205,6 @@ window.onload = function () {
     getQueryParams(); // Cargar los parámetros
     setTimeout(hideEmptyRows, 100);  // Esperar 100ms para asegurar que los parámetros se carguen
 };
-     // Ejecutar la impresión después de cargar los parámetros
-   window.print();
-     }
-
-    window.onload = getQueryParams; // Ejecutar al cargar la página
   </script>
 </head>
 <body onload="getQueryParams()" onfocus="window.close(">
