@@ -207,17 +207,7 @@ document.querySelectorAll("tbody tr").forEach(tr => {
     }
 
     // Ejecutar la función después de cargar los valores
-    setTimeout(ocultarFilasTotales, 100);
-      document.addEventListener("DOMContentLoaded", function () {
-    var saldoSpan = document.getElementById("saldo");
-    var saldoParrafo = saldoSpan.parentElement; // Obtiene el <p> que contiene el <span>
-
-    // Verifica si el saldo es vacío o cero
-    if (!saldoSpan.textContent.trim() || saldoSpan.textContent.trim() === "0" || saldoSpan.textContent.trim() === "0.00") {
-      saldoParrafo.style.display = "none"; // Oculta el párrafo
-    }
-  });  
-        
+    setTimeout(ocultarFilasTotales, 100);  
       // Retrasar la impresión para que se reflejen los cambios en el DOM
         setTimeout(() => {
             window.print();
@@ -367,6 +357,17 @@ document.querySelectorAll("tbody tr").forEach(tr => {
     </tr>
 </table>
 <p style="font-size: 12px;font-family: Arial, sans-serif; margin-top: 2mm;">Saldo: <span id="saldo"></span></p>  
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var saldoSpan = document.getElementById("saldo");
+    var saldoParrafo = saldoSpan.parentElement; // Obtiene el <p> que contiene el <span>
+
+    // Verifica si el saldo es vacío o cero
+    if (!saldoSpan.textContent.trim() || saldoSpan.textContent.trim() === "0" || saldoSpan.textContent.trim() === "0.00") {
+      saldoParrafo.style.display = "none"; // Oculta el párrafo
+    }
+  });
+</script>
 
 </body>
 </html>
