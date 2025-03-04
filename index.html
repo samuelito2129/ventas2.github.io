@@ -163,25 +163,7 @@
                     }
                 }
             });
-    document.addEventListener("DOMContentLoaded", function () {
-        var saldoSpan = document.getElementById("saldo");
-        var saldoParrafo = saldoSpan.parentElement;
-
-        function verificarSaldo() {
-            if (!saldoSpan.textContent.trim() || saldoSpan.textContent.trim() === "0" || saldoSpan.textContent.trim() === "0.00") {
-                saldoParrafo.style.display = "none"; // Oculta el párrafo
-            } else {
-                saldoParrafo.style.display = "block"; // Muestra el párrafo si hay saldo
-            }
-        }
-
-        // Ejecuta la función inicialmente
-        verificarSaldo();
-
-        // Si el saldo se actualiza dinámicamente, detecta cambios en su contenido
-        var observer = new MutationObserver(verificarSaldo);
-        observer.observe(saldoSpan, { childList: true, subtree: true });
-    });
+    
      // Ocultar filas si "SOB" y "MONTO" están vacíos o son cero
 document.querySelectorAll("tbody tr").forEach(tr => {
     const SOBTd = tr.querySelector("td:nth-child(2)"); // Columna SOB (segunda columna)
@@ -375,5 +357,27 @@ document.querySelectorAll("tbody tr").forEach(tr => {
     </tr>
 </table>
 <p style="font-size: 12px;font-family: Arial, sans-serif; margin-top: 2mm;">Saldo: <span id="saldo"></span></p>  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var saldoSpan = document.getElementById("saldo");
+        var saldoParrafo = saldoSpan.parentElement;
+
+        function verificarSaldo() {
+            if (!saldoSpan.textContent.trim() || saldoSpan.textContent.trim() === "0" || saldoSpan.textContent.trim() === "0.00") {
+                saldoParrafo.style.display = "none"; // Oculta el párrafo
+            } else {
+                saldoParrafo.style.display = "block"; // Muestra el párrafo si hay saldo
+            }
+        }
+
+        // Ejecuta la función inicialmente
+        verificarSaldo();
+
+        // Si el saldo se actualiza dinámicamente, detecta cambios en su contenido
+        var observer = new MutationObserver(verificarSaldo);
+        observer.observe(saldoSpan, { childList: true, subtree: true });
+    });
+</script>
+  
 </body>
 </html>
